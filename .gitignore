@@ -1,0 +1,7 @@
+.DS_Store
+
+# Personal config — never commit
+private-context/
+
+# Agent runtime memory (symlinked to ~/.claude/agent-memory/<agent>/)
+agents/*/memory/
