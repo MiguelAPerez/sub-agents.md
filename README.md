@@ -8,6 +8,9 @@ config and runtime memory are gitignored.
 - **`persistent-agent-memory`** skill from [`agent-skills.md`](../agent-skills.md) —
   shared memory types, save/recall rules, and indexing. Symlink it into
   `~/.claude/skills/` and/or `~/.cursor/skills/`.
+- **`verify-on-simulator`** skill from [`agent-skills.md`](../agent-skills.md) —
+  manual UI verification on Apple simulators; delegate driving to
+  **`simulator-verifier`** subagent.
 - **`private-context`** — your personal env config (copy from `private-context.example/`).
 
 ## Layout
@@ -18,8 +21,10 @@ sub-agents.md/
 │   ├── remote-host-debugger/
 │   │   ├── agent.md              # committed — generic agent definition
 │   │   └── memory/               # gitignored — runtime learnings
-│   └── git-workflow-manager/
-│       └── agent.md
+│   ├── git-workflow-manager/
+│   │   └── agent.md
+│   └── simulator-verifier/
+│       └── agent.md              # Sonnet — screenshot-driven UI checks
 ├── private-context/              # gitignored — your personal env config
 ├── private-context.example/      # committed — template
 └── scripts/link.sh
@@ -31,6 +36,8 @@ sub-agents.md/
 # 1. Symlink shared skills (if not already)
 ln -sf ~/development/agent-skills.md/persistent-agent-memory ~/.claude/skills/persistent-agent-memory
 ln -sf ~/development/agent-skills.md/persistent-agent-memory ~/.cursor/skills/persistent-agent-memory
+ln -sf ~/development/agent-skills.md/verify-on-simulator ~/.claude/skills/verify-on-simulator
+ln -sf ~/development/agent-skills.md/verify-on-simulator ~/.cursor/skills/verify-on-simulator
 
 # 2. Create your private config
 cp -r private-context.example private-context
